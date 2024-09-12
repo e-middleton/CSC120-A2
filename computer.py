@@ -8,3 +8,4 @@ class Computer:
         pass # You'll remove this when you fill out your constructor
 
     # What methods will you need?
+    #should probably have a method to print the deets on a comp
