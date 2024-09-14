@@ -22,11 +22,11 @@ class ResaleShop():
 
     #am trying to print the inventory, it doesn't quite work though
     def output(self):
-       if self.inventory:
+        if self.inventory:
         # For each item
-        for self.itemID in self.inventory:
+            for self.itemID in self.inventory:
             # Print its details
-            print(f'Item ID: {self.itemID} : {self.inventory[self.itemID]}')
+                print(f'Item ID: {self.itemID} : {self.inventory[self.itemID].vomit()}')
         else:
             print("No inventory to display.")
 
