@@ -1,5 +1,5 @@
 from computer import Computer
-from typing import Dict
+from typing import Dict, Optional
 
 
 class ResaleShop():
@@ -26,6 +26,28 @@ class ResaleShop():
             print("Item", self.itemID, "sold!")
         else: 
             print("Item", self.itemID, "not found. Please select another item to sell.")
+
+    #had to import Optional so this works
+    #okay, some people were talking about updating os as a dif method? Like by itself
+    #I have that bundled into refurbish, should I have it sep in computer class?
+    #should I use the update_price method I made in Computer?
+    def refurbish(self, PC:Computer, new_os: Optional[str] = None):
+        if self.itemID in self.inventory:
+            PC = self.inventory[self.itemID] # locate the computer
+            if int(PC.year_made) < 2000:
+                PC.update_price(0) # too old to sell, donation only
+            elif int(PC.year_made) < 2012:
+                PC.update_price(250) # heavily-discounted price on machines 10+ years old
+            elif int(PC.year_made) < 2018:
+                PC.update_price(550) # discounted price on machines 4-to-10 year old machines
+            else:
+                PC.update_price(1000) # recent stuff
+
+            if new_os is not None:
+                PC.operating_system = new_os # update details after installing new OS
+        else:
+            print("Item", self.itemID, "not found. Please select another item to refurbish.")
+
 
     #prints out the inventory if it exists
     #Confused because now it's printing out : None at the end? Why?
@@ -54,7 +76,10 @@ def main():
     print()
     print()
 
-    myShop.sell(my_computer)
+    #myShop.sell(my_computer)
+    #myShop.output()
+
+    myShop.refurbish(my_computer, "Competing brand name")
     myShop.output()
 
 main()
