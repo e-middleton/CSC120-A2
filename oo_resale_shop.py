@@ -100,8 +100,6 @@ def main():
     #myShop.buy(my_computer)
     myShop.buy(testComputer)
     #myShop.output()
-    #print("Just bought a computer!")
-
 
    
     #myShop.output()
@@ -109,10 +107,10 @@ def main():
 
     #myShop.sell(testComputer)
     #good, error message for sell works
-    myShop.refurbish(testComputer, "Competing brand name")
+    
     myShop.output()
     #good, error message for referbish works
    
     
-
-main()
+if __name__ == "__main__":
+    main()
