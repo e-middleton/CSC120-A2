@@ -19,7 +19,7 @@ __YES__ 1 pt: Constructor for `Computer` class is present and sets attributes co
 
 __YES__ 1 pt: All expected attributes for `ResaleShop` class are present
 
-__PART__ 1 pt: All expected methods for `ResaleShop` class are present
+__YES__ 1 pt: All expected methods for `ResaleShop` class are present
 
 __YES__ 1 pt: Constructor for `ResaleShop` class is present and sets attributes correctly
 

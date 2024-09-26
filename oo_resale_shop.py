@@ -18,14 +18,14 @@ class ResaleShop():
 
 
     def sell(self, PC:Computer):
-        for i in range(len(self.inventory)): #checking if the computer exists in the inventory
-            if self.inventory[i] == PC:
-                self.inventory.remove(PC) #removes the computer from the list
-                print("Computer sold!")
-            else: 
-                print("Computer not found. Please select another item to sell.")
+        if PC in self.inventory: #checking if the computer exists in the inventory
+            self.inventory.remove(PC) #removes the computer from the list
+            print("Computer sold!")
+        else: 
+            print("Computer not found. Please select another item to sell.")
 
     #had to import Optional so this works
+    #adds a new OS to computer and updates its price
     def refurbish(self, PC:Computer, new_os: Optional[str] = None):
         if self.inventory: #if our inventory exists
             for i in range(len(self.inventory)): #iterate through the indices
@@ -97,11 +97,10 @@ def main():
 
    
     #myShop.output()
-    #print()
-
+    
     #myShop.sell(testComputer)
-    myShop.update_price(myComputer, 69)
-
+    myShop.update_price(testComputer, 25)
+    print()
     #myShop.sell(testComputer)
     myShop.output()
 
