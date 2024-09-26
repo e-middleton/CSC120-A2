@@ -6,76 +6,70 @@ from typing import Dict, Optional
 #creates a class ResaleShop that is able to buy, sell, refurbish computers from it's inventory
 class ResaleShop():
     # Attributes
-    inventory : Dict[int, Computer] = {}
-    itemID: int
+    inventory : list[Computer] = []
    
     #Constructor
     def __init__(self):
-        self.inventory:dict = {}
-        self.itemID = 0
+        self.inventory:list = []
 
     #PC is the name of my variable, of type Computer, so I can pass in the specific instance
     def buy(self, PC:Computer):
-        self.itemID += 1 # increment itemID
-        self.inventory[self.itemID] = PC
+        self.inventory.append(PC) #.append to add it into the list inventory
 
-    #but then I don't use PC at all?
-    #okay, trying this to try fix the error message?
+
     def sell(self, PC:Computer):
-        if self.inventory[self.itemID] == PC:
-        #if self.itemID in self.inventory:
-            del self.inventory[self.itemID]
-            print("Item", self.itemID, "sold!")
-        else: 
-            print("Item", self.itemID, "not found. Please select another item to sell.")
+        for i in range(len(self.inventory)): #checking if the computer exists in the inventory
+            if self.inventory[i] == PC:
+                self.inventory.remove(PC) #removes the computer from the list
+                print("Computer sold!")
+            else: 
+                print("Computer not found. Please select another item to sell.")
 
     #had to import Optional so this works
-    #okay, some people were talking about updating os as a dif method? Like by itself
-    #I have that bundled into refurbish, should I have it sep in computer class?
     def refurbish(self, PC:Computer, new_os: Optional[str] = None):
-        if self.inventory:
-            if self.inventory[self.itemID] == PC:
-            #if self.itemID in self.inventory:
-                PC = self.inventory[self.itemID] # locate the computer
-                if int(PC.year_made) < 2000:
-                    PC.price = 0 # too old to sell, donation only
-                elif int(PC.year_made) < 2012:
-                    PC.price = 250 # heavily-discounted price on machines 10+ years old
-                elif int(PC.year_made) < 2018:
-                    PC.price = 550 # discounted price on machines 4-to-10 year old machines
-                else:
-                    PC.price = 1000 # recent stuff
+        if self.inventory: #if our inventory exists
+            for i in range(len(self.inventory)): #iterate through the indices
+                if self.inventory[i] == PC: 
+                #if computer in self.inventory:
+                    PC = self.inventory[i] # locate the computer, ???WHAT does this do?
+                    if int(PC.year_made) < 2000:
+                        PC.price = 0 # too old to sell, donation only
+                    elif int(PC.year_made) < 2012:
+                        PC.price = 250 # heavily-discounted price on machines 10+ years old
+                    elif int(PC.year_made) < 2018:
+                        PC.price = 550 # discounted price on machines 4-to-10 year old machines
+                    else:
+                        PC.price = 1000 # recent stuff
 
-                if new_os is not None:
-                    PC.operating_system = new_os # update details after installing new OS
-            else:
-                print("Item", self.itemID, "not found. Please select another item to refurbish.")
+                    if new_os is not None:
+                        PC.operating_system = new_os # update details after installing new OS
+                else:
+                    print("Item not found. Please select another item to refurbish.")
         
-        else:
-            print("No inventory to refurbish")
+            else:
+                print("No inventory to refurbish")
 
     #Updates the price of a computer in the inventory, if you pass in the computer and the new price
     def update_price(self, PC: Computer, new_price: int):
-        if self.inventory[self.itemID] == PC:
-            self.inventory[self.itemID].price = new_price
+        if PC in self.inventory: #checking if the computer exists in the inventory
+            PC.price = new_price
         else:
-            print("Item", self.itemID, "not found. Cannot update price.")
+            print("Item not found. Cannot update price.")
 
 
     #prints out the inventory if it exists
     def output(self):
-        if self.inventory != False:
+        if len(self.inventory) != False:
         # For each item
-            for self.itemID in self.inventory:
+            for i in range(len(self.inventory)): #for an item in the list
             # Print its details, calling each individual attribute from Computer
-            #I couldn't figure out a cleaner way :(
-                print(f'Item ID: {self.itemID} : Description: {self.inventory[self.itemID].description}\n'
-                      f'Processor Type: {self.inventory[self.itemID].processor_type}\n'
-                      f'Hard Drive Capacity: {self.inventory[self.itemID].hard_drive_capacity}\n'
-                      f'Memory: {self.inventory[self.itemID].memory}\n'
-                      f'Operating System: {self.inventory[self.itemID].operating_system}\n'
-                      f'Year made: {self.inventory[self.itemID].year_made}\n'
-                      f'Price: {self.inventory[self.itemID].price}\n'
+                print(f'Item ID: {i} : Description: {self.inventory[i].description}\n'
+                      f'Processor Type: {self.inventory[i].processor_type}\n'
+                      f'Hard Drive Capacity: {self.inventory[i].hard_drive_capacity}\n'
+                      f'Memory: {self.inventory[i].memory}\n'
+                      f'Operating System: {self.inventory[i].operating_system}\n'
+                      f'Year made: {self.inventory[i].year_made}\n'
+                      f'Price: {self.inventory[i].price}\n'
                       )
         else:
             print("No inventory to display.")
@@ -99,17 +93,18 @@ def main():
     myShop = ResaleShop()
     #myShop.buy(my_computer)
     myShop.buy(testComputer)
-    #myShop.output()
 
    
     #myShop.output()
     #print()
 
     #myShop.sell(testComputer)
-    #good, error message for sell works
-    
+    myShop.update_price(testComputer, 69)
+
+    myShop.sell(testComputer)
     myShop.output()
-    #good, error message for referbish works
+
+
    
     
 if __name__ == "__main__":

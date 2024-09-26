@@ -34,3 +34,7 @@ class Computer:
         self.year_made = year_made
         self.price = price
 
+    #hmm, confusion?
+    def vomit(self):
+        print("Description: ", self.description)
+
