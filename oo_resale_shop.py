@@ -75,7 +75,8 @@ class ResaleShop():
             print("No inventory to display.")
 
 def main():
-    my_computer = Computer(
+
+    myComputer:Computer = Computer(
         "Mac Pro (Late 2013)",
         "3.5 GHc 6-Core Intel Xeon E5",
         1024, 64,
@@ -99,9 +100,9 @@ def main():
     #print()
 
     #myShop.sell(testComputer)
-    myShop.update_price(testComputer, 69)
+    myShop.update_price(myComputer, 69)
 
-    myShop.sell(testComputer)
+    #myShop.sell(testComputer)
     myShop.output()
 
 
