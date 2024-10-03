@@ -12,37 +12,36 @@ class ResaleShop():
     def __init__(self):
         self.inventory:list = []
 
-    #PC is the name of my variable, of type Computer, so I can pass in the specific instance
-    def buy(self, PC:Computer):
-        self.inventory.append(PC) #.append to add it into the list inventory
+    #buy function adds a new Computer instance, pc, into the inventory
+    def buy(self, pc:Computer):
+        self.inventory.append(pc) #.append to add it into the list inventory
 
-
-    def sell(self, PC:Computer):
-        if PC in self.inventory: #checking if the computer exists in the inventory
-            self.inventory.remove(PC) #removes the computer from the list
+    #Checks if the computer exists in the inventory, and if it does, removes it from the list
+    def sell(self, pc:Computer):
+        if pc in self.inventory: #checking if the computer exists
+            self.inventory.remove(pc) #removes the compute
             print("Computer sold!")
         else: 
             print("Computer not found. Please select another item to sell.")
 
-    #had to import Optional so this works
-    #adds a new OS to computer and updates its price
-    def refurbish(self, PC:Computer, new_os: Optional[str] = None):
+    #adds a new OS to the Computer instance and updates its price
+    def refurbish(self, pc:Computer, new_os: Optional[str] = None):
         if self.inventory: #if our inventory exists
             for i in range(len(self.inventory)): #iterate through the indices
-                if self.inventory[i] == PC: 
+                if self.inventory[i] == pc: 
                 #if computer in self.inventory:
-                    PC = self.inventory[i] # locate the computer, ???WHAT does this do?
-                    if int(PC.year_made) < 2000:
-                        PC.price = 0 # too old to sell, donation only
-                    elif int(PC.year_made) < 2012:
-                        PC.price = 250 # heavily-discounted price on machines 10+ years old
-                    elif int(PC.year_made) < 2018:
-                        PC.price = 550 # discounted price on machines 4-to-10 year old machines
+                    pc = self.inventory[i] # locate the computer, ???WHAT does this do?
+                    if int(pc.year_made) < 2000:
+                        pc.price = 0 # too old to sell, donation only
+                    elif int(pc.year_made) < 2012:
+                        pc.price = 250 # heavily-discounted price on machines 10+ years old
+                    elif int(pc.year_made) < 2018:
+                        pc.price = 550 # discounted price on machines 4-to-10 year old machines
                     else:
-                        PC.price = 1000 # recent stuff
+                        pc.price = 1000 # recent stuff
 
                     if new_os is not None:
-                        PC.operating_system = new_os # update details after installing new OS
+                        pc.operating_system = new_os # update details after installing new OS
                 else:
                     print("Item not found. Please select another item to refurbish.")
         
@@ -50,9 +49,9 @@ class ResaleShop():
                 print("No inventory to refurbish")
 
     #Updates the price of a computer in the inventory, if you pass in the computer and the new price
-    def update_price(self, PC: Computer, new_price: int):
-        if PC in self.inventory: #checking if the computer exists in the inventory
-            PC.price = new_price
+    def update_price(self, pc: Computer, new_price: int):
+        if pc in self.inventory: #checking if the computer exists in the inventory
+            pc.price = new_price
         else:
             print("Item not found. Cannot update price.")
 

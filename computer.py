@@ -12,11 +12,7 @@ class Computer:
     price: int
 
 
-    # What attributes will it need?
-
-    # How will you set up your constructor?
-    # Remember: in python, all constructors have the same name (__init__)
-    #setting up my constructor to make new computers
+    #Constructor to create instances of class Computer
     def __init__(self, description: str,
                     processor_type: str,
                     hard_drive_capacity: int,
@@ -33,8 +29,4 @@ class Computer:
         self.operating_system =  operating_system
         self.year_made = year_made
         self.price = price
-
-    #hmm, confusion?
-    def vomit(self):
-        print("Description: ", self.description)
 
