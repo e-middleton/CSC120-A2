@@ -12,7 +12,7 @@ class ResaleShop():
     def __init__(self):
         self.inventory:list = []
 
-    #buy function adds a new Computer instance, pc, into the inventory
+    #buy function adds a new Computer instance, pc, into the inventory, pc short for personal computer
     def buy(self, pc:Computer):
         self.inventory.append(pc) #.append to add it into the list inventory
 
@@ -89,7 +89,7 @@ def main():
         "Windows", 1602, 5
     )
 
-    #creates the first instance/initializes of my class ResaleShop so I can 
+    #creates the first instance/initializes of my class ResaleShop so I can use its methods
     myShop = ResaleShop()
     #myShop.buy(my_computer)
     myShop.buy(testComputer)

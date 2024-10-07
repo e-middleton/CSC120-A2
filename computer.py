@@ -1,8 +1,6 @@
 #creates a class Computer which holds all the stats about a computer in a shop
 class Computer:
-    #set up attributes for computer
-    #attributes aren't initialized because there's no need for memory space yet
-    #that happens in constructor
+    #attributes aren't initialized because there's no need for memory space yet, only declared
     description: str
     processor_type: str
     hard_drive_capacity: int
@@ -12,7 +10,7 @@ class Computer:
     price: int
 
 
-    #Constructor to create instances of class Computer
+    #Constructor to create instances of class Computer, attributes are initialized here
     def __init__(self, description: str,
                     processor_type: str,
                     hard_drive_capacity: int,
